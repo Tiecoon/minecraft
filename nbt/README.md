@@ -1,6 +1,6 @@
 # nbt
 --
-    import "github.com/MJKWoolnough/minecraft/nbt"
+    import "github.com/Tiecoon/minecraft/nbt"
 
 Package nbt implements a full Named Binary Tag reader/writer, based on the specs at
 http://web.archive.org/web/20110723210920/http://www.minecraft.net/docs/NBT.txt

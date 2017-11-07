@@ -1,6 +1,6 @@
 package minecraft
 
-import "github.com/MJKWoolnough/minecraft/nbt"
+import "github.com/Tiecoon/minecraft/nbt"
 
 // Option is a function used to set an option for a minecraft level struct
 type Option func(*Level)

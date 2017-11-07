@@ -3,7 +3,7 @@ package minecraft
 import (
 	"strconv"
 
-	"github.com/MJKWoolnough/minecraft/nbt"
+	"github.com/Tiecoon/minecraft/nbt"
 )
 
 var (

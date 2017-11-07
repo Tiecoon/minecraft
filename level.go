@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/MJKWoolnough/boolmap"
-	"github.com/MJKWoolnough/minecraft/nbt"
+	"github.com/Tiecoon/minecraft/nbt"
 )
 
 var (
@@ -335,7 +335,7 @@ func (l *Level) GetHeight(x, z int32) (int32, error) {
 	return c.GetHeight(x, z), nil
 }
 
-func (l *Level) getChunk(x, z int32, create bool) (*chunk, error) {
+func (l *Level) GetChunk(x, z int32, create bool) (*chunk, error) {
 	x >>= 4
 	z >>= 4
 	pos := uint64(z)<<32 | uint64(uint32(x))

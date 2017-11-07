@@ -1,6 +1,6 @@
 # minecraft
 --
-    import "github.com/MJKWoolnough/minecraft"
+    import "github.com/Tiecoon/minecraft"
 
 Package minecraft is a level viewer/editor for the popular creative game
 ### minecraft

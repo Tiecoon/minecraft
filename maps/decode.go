@@ -4,7 +4,7 @@ import (
 	"image"
 	"io"
 
-	"github.com/MJKWoolnough/minecraft/nbt"
+	"github.com/Tiecoon/minecraft/nbt"
 )
 
 func init() {

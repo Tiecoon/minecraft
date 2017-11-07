@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MJKWoolnough/minecraft/nbt"
+	"github.com/Tiecoon/minecraft/nbt"
 )
 
 func testPathChunkSetGet(t *testing.T, path Path) {

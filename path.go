@@ -14,7 +14,7 @@ import (
 
 	"github.com/MJKWoolnough/byteio"
 	"github.com/MJKWoolnough/memio"
-	"github.com/MJKWoolnough/minecraft/nbt"
+	"github.com/Tiecoon/minecraft/nbt"
 )
 
 var filename *regexp.Regexp
