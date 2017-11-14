@@ -120,7 +120,7 @@ func (l *Level) GetBlock(x, y, z int32) (Block, error) {
 	if y < 0 {
 		return Block{}, nil
 	}
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil {
 		return Block{}, err
 	} else if c == nil {
@@ -140,7 +140,7 @@ func (l *Level) SetBlock(x, y, z int32, block Block) error {
 	)
 	for mx := x - 1; mx <= x+1; mx++ {
 		for mz := z - 1; mz <= z+1; mz++ {
-			if c, err = l.getChunk(mx, mz, true); err != nil {
+			if c, err = l.GetChunk(mx, mz, true); err != nil {
 				return err
 			}
 			for my := y + 16; my >= 0; my -= 16 {
@@ -150,7 +150,7 @@ func (l *Level) SetBlock(x, y, z int32, block Block) error {
 			}
 		}
 	}
-	c, _ = l.getChunk(x, z, false)
+	c, _ = l.GetChunk(x, z, false)
 	opacity := c.GetOpacity(x, y, z)
 	c.SetBlock(x, y, z, block)
 	if block.Opacity() != opacity {
@@ -183,7 +183,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 		getLight = (*chunk).GetBlockLight
 		setLight = (*chunk).SetBlockLight
 	}
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil {
 		return err
 	} else if c == nil {
@@ -202,7 +202,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 				if changed.GetBool(pos) {
 					continue
 				}
-				if c, err = l.getChunk(mx, mz, false); err != nil {
+				if c, err = l.GetChunk(mx, mz, false); err != nil {
 					return err
 				} else if c == nil {
 					continue
@@ -228,7 +228,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 		}
 	} // end lighting reset
 	if source > 0 { //If this is the source of light
-		c, _ = l.getChunk(x, z, false)
+		c, _ = l.GetChunk(x, z, false)
 		c.SetBlockLight(x, y, z, source)
 		list = list[1:]
 		for _, s := range surroundingBlocks(x, y, z) {
@@ -237,7 +237,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 			if changed.GetBool(pos) {
 				continue
 			}
-			if c, err = l.getChunk(mx, mz, false); err != nil {
+			if c, err = l.GetChunk(mx, mz, false); err != nil {
 				return err
 			} else if c == nil {
 				continue
@@ -255,7 +255,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 		mx, my, mz := list[0].x, list[0].y, list[0].z
 		changed.SetBool((uint64(my)<<10)|(uint64(mz&31)<<5)|uint64(mx&31), false)
 		newLight := uint8(0)
-		c, _ = l.getChunk(mx, mz, false)
+		c, _ = l.GetChunk(mx, mz, false)
 		if skyLight && my >= c.GetHeight(mx, mz) { //Determine correct light level...
 			newLight = 15
 		} else if opacity := c.GetOpacity(mx, my, mz); opacity == 15 {
@@ -264,7 +264,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 			var d *chunk
 			for _, s := range surroundingBlocks(mx, my, mz) {
 				nx, ny, nz := s[0], s[1], s[2]
-				if d, err = l.getChunk(nx, nz, false); err != nil {
+				if d, err = l.GetChunk(nx, nz, false); err != nil {
 					return err
 				} else if d == nil {
 					continue
@@ -287,7 +287,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 				if changed.GetBool(pos) {
 					continue
 				}
-				if c, err = l.getChunk(mx, mz, false); err != nil {
+				if c, err = l.GetChunk(mx, mz, false); err != nil {
 					return err
 				} else if c == nil {
 					continue
@@ -307,7 +307,7 @@ func (l *Level) genLighting(x, y, z int32, skyLight, darker bool, source uint8) 
 
 // GetBiome returns the biome for the column x, z.
 func (l *Level) GetBiome(x, z int32) (Biome, error) {
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil {
 		return AutoBiome, err
 	} else if c == nil {
@@ -318,7 +318,7 @@ func (l *Level) GetBiome(x, z int32) (Biome, error) {
 
 // SetBiome sets the biome for the column x, z.
 func (l *Level) SetBiome(x, z int32, biome Biome) error {
-	c, err := l.getChunk(x, z, true)
+	c, err := l.GetChunk(x, z, true)
 	if err != nil {
 		return err
 	}
@@ -328,7 +328,7 @@ func (l *Level) SetBiome(x, z int32, biome Biome) error {
 
 // GetHeight returns the y coordinate for the highest non-transparent block at column x, z.
 func (l *Level) GetHeight(x, z int32) (int32, error) {
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil || c == nil {
 		return 0, err
 	}

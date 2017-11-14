@@ -1,10 +1,9 @@
 package maps
 
 import (
+	"github.com/Tiecoon/minecraft/nbt"
 	"image"
 	"io"
-
-	"github.com/Tiecoon/minecraft/nbt"
 )
 
 func init() {
@@ -80,15 +79,7 @@ type config struct {
 //
 // Minecraft maps are gzip compressed, so the reader given to this func should
 // be wrapped in gzip.NewReader.
+
 func Config(r io.Reader) (image.Config, error) {
-	var c config
-	_, err := nbt.RDecode(r, &c)
-	if err != nil {
-		return image.Config{}, err
-	}
-	return image.Config{
-		ColorModel: palette,
-		Width:      int(c.Data.Width),
-		Height:     int(c.Data.Height),
-	}, nil
+	panic("why does this exist")
 }

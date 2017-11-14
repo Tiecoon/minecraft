@@ -454,7 +454,7 @@ func BenchmarkSkyLight(b *testing.B) {
 }
 
 func (l *Level) getBlockLight(x, y, z int32) (uint8, error) {
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil {
 		return 0, err
 	} else if c == nil {
@@ -464,7 +464,7 @@ func (l *Level) getBlockLight(x, y, z int32) (uint8, error) {
 }
 
 func (l *Level) getSkyLight(x, y, z int32) (uint8, error) {
-	c, err := l.getChunk(x, z, false)
+	c, err := l.GetChunk(x, z, false)
 	if err != nil {
 		return 0, err
 	} else if c == nil {
